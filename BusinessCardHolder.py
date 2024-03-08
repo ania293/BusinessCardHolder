@@ -14,11 +14,11 @@ class BaseContact:
 
     @property
     def name_length(self):
-        return self._name_length
+        return f"{len(self.name)} {len(self.surname)}"
 
-    @name_length.getter
-    def name_length(self):
-        return f"{len(self.name)} {len(self.surname)}" 
+    #@name_length.getter
+    #def name_length(self):
+    #    return f"{len(self.name)} {len(self.surname)}" 
 
     def __str__(self):
         return f'{self.name} {self.surname} {self.phone_number} {self.email}'
@@ -79,28 +79,29 @@ def create_1000_contacts():
         contacts.append(temp)
     return contacts
 
-list_1000 = create_1000_contacts()
+if __name__ == "__main__":
+    list_1000 = create_1000_contacts()
 
         
-house = BaseContact(name="Greg", surname="House", email="greg.house@princeton-plainsboro.com", phone_number=fake.phone_number())
-cameron = BaseContact("Allison", "Cameron", fake.phone_number(), "allison.cameron@princeton-plainsboro.com")
-foreman = BusinessContact(name="Eric", surname="Foreman", email="forman@princeton-plainsboro.com", phone_number="+10123456789",
+    house = BaseContact(name="Greg", surname="House", email="greg.house@princeton-plainsboro.com", phone_number=fake.phone_number())
+    cameron = BaseContact("Allison", "Cameron", fake.phone_number(), "allison.cameron@princeton-plainsboro.com")
+    foreman = BusinessContact(name="Eric", surname="Foreman", email="forman@princeton-plainsboro.com", phone_number="+10123456789",
                         position="Neurologist", company="Hospital Princeton-Plainsboro", work_phone="+19876543210")
-chase = BusinessContact(name="Robert", surname="Chase", position="surgen", company="Hospital Princeton-Plainsboro",
+    chase = BusinessContact(name="Robert", surname="Chase", position="surgen", company="Hospital Princeton-Plainsboro",
                         email="robert.chase@princeton-plainsboro.com", work_phone=fake.phone_number(), phone_number=fake.phone_number())
-wilson = BusinessContact(name="James", surname="Wilson", position="Oncologist", phone_number=fake.phone_number(), work_phone=fake.phone_number(),
+    wilson = BusinessContact(name="James", surname="Wilson", position="Oncologist", phone_number=fake.phone_number(), work_phone=fake.phone_number(),
                       email="james.wilson@princeton-plainsboro.com", company="Hospital Princeton-Plainsboro")
 
-cameron.contact()
-foreman.contact()
+    cameron.contact()
+    foreman.contact()
 
 
-cameron.name = "Penelopia"
-print(BaseContact.__repr__(foreman))
-print(BaseContact.__repr__(cameron))
+    cameron.name = "Penelopia"
+    print(foreman.__repr__())
+    print(cameron.__repr__())
 
-new_instances = create_contacts(BaseContact, 3)
+    new_instances = create_contacts(BaseContact, 3)
 
-print(new_instances[0])
+    print(new_instances[0])
 
-new_inst_Business = create_contacts(BusinessContact, 10)
+    new_inst_Business = create_contacts(BusinessContact, 10)
