@@ -1,4 +1,5 @@
 from faker import Faker
+from datetime import datetime
 
 fake = Faker()
 
@@ -18,7 +19,6 @@ class BaseContact:
     @name_length.getter
     def name_length(self):
         return f"{len(self.name)} {len(self.surname)}" 
-
 
     def __str__(self):
         return f'{self.name} {self.surname} {self.phone_number} {self.email}'
@@ -59,6 +59,27 @@ def create_contacts(type, amount):
         list_of_new_instances.append(temp)
     
     return list_of_new_instances
+
+def measure_time(func):
+    time_str = datetime.now()
+    def wrapper():
+        result = func()
+        return result
+    time_stop = datetime.now()
+    dif = time_stop - time_str
+    print(f" Time of the process in sec: {dif.total_seconds()}")
+    return wrapper
+
+@measure_time
+def create_1000_contacts():
+    contacts = []
+    for i in range(1000):
+        temp = BusinessContact(name=fake.name(), surname=fake.last_name(), phone_number=fake.phone_number(), email=fake.email(),
+                                   position=fake.job(), company=fake.company(), work_phone=fake.phone_number())
+        contacts.append(temp)
+    return contacts
+
+list_1000 = create_1000_contacts()
 
         
 house = BaseContact(name="Greg", surname="House", email="greg.house@princeton-plainsboro.com", phone_number=fake.phone_number())
