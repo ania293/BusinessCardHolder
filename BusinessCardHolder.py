@@ -14,11 +14,13 @@ class BaseContact:
 
     @property
     def name_length(self):
-        return f"{len(self.name)} {len(self.surname)}"
+        self._name_length = len(self.name) + len(self.surname)
+        return self._name_length
 
     #@name_length.getter
     #def name_length(self):
-    #    return f"{len(self.name)} {len(self.surname)}" 
+    #    self._name_length = len(self.name) + len(self.surname)
+    #    return self._name_length
 
     def __str__(self):
         return f'{self.name} {self.surname} {self.phone_number} {self.email}'
