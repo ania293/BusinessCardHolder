@@ -10,7 +10,7 @@ class BaseContact:
         self.surname = surname
         self.phone_number = phone_number
         self.email = email
-        self._name_length = 0
+        self._name_length = len(name) + len(surname)
 
     @property
     def name_length(self):
