@@ -97,10 +97,9 @@ if __name__ == "__main__":
     cameron.contact()
     foreman.contact()
 
-
+    print([cameron])
     cameron.name = "Penelopia"
-    print(foreman.__repr__())
-    print(cameron.__repr__())
+    print([cameron, foreman])
 
     new_instances = create_contacts(BaseContact, 3)
 
